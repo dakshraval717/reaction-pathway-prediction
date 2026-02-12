@@ -1,6 +1,6 @@
 # Reaction Pathway Prediction
 
-A machine learning pipeline that predicts organic reaction mechanisms by analyzing chemical structure changes. This project automates the extraction of reaction data from NIST and classifies reaction pathways using Morgan fingerprinting and Random Forest classifiers.
+Predicting/decomposing organic reaction mechanisms/steps by analyzing structural and bond changes with machine learning. Single-step classification working using Morgan fingerprinting and Random Forest! Have tokenized and trying to train using LLM-based approach.
 
 ## Project Structure
 
@@ -15,8 +15,8 @@ reaction-pathway-prediction/
 ## Key Components
 
 ### 1. Data Acquisition (`pandas_scraper.py`)
-- Automated scraper for the NIST Chemical Kinetics Database.
-- Extracts activation energies, pre-exponential factors, and reaction orders using regex.
+- Automated scraper for the [NIST Chemical Kinetics Database](https://kinetics.nist.gov/kinetics/)
+- Extracts activation energies, pre-exponential factors, and reaction orders using regex. The aim was to eventually 
 - Converts raw HTML reaction strings into structured CSV format.
 
 ### 2. Feature Engineering (`morgan_processing.py`)
