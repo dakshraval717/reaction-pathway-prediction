@@ -1,4 +1,4 @@
-# Project Description
+# Predicting Chemical Reaction Pathways
 
 ### Language Model Method
 
