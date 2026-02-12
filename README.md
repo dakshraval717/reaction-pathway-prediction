@@ -1,13 +1,49 @@
-# Predicting Chemical Reaction Pathways
+# Reaction Pathway Prediction
 
-### Language Model Method
+A machine learning pipeline that predicts organic reaction mechanisms by analyzing chemical structure changes. This project automates the extraction of reaction data from NIST and classifies reaction pathways using Morgan fingerprinting and Random Forest classifiers.
 
-Trained a language model to decompose 'black-box' organic chemical reactions into likely pathways/steps by encoding 3D geometric structure, bond resonance, and aromatic rings using unique strings.
+## Project Structure
 
-![SMILES Chemical String](docs/SMILES.webp)
+```bash
+reaction-pathway-prediction/
+├── data/       # Dataset storage (Git LFS tracked)
+├── scripts/    # Data processing and ML pipelines
+├── docs/       # Documentation and visuals
+└── requirements.txt
+```
 
-### Bit Vector Method
+## Key Components
 
-Trained a Random Forest model with scikit-learn to classify single-step reaction types by encoding 'reaction changes' as a 4096-bit vector.
+### 1. Data Acquisition (`pandas_scraper.py`)
+- Automated scraper for the NIST Chemical Kinetics Database.
+- Extracts activation energies, pre-exponential factors, and reaction orders using regex.
+- Converts raw HTML reaction strings into structured CSV format.
 
-![Morgan Fingerprint Bit Vector](docs/morgan.png)
+### 2. Feature Engineering (`morgan_processing.py`)
+- Converts chemical reaction SMILES into 4096-bit Morgan difference fingerprints.
+- Captures structural changes (bond breaking/forming) as vector inputs for ML models.
+
+### 3. Mechanism Classification (`mechanism_classifier.py`)
+- **Model:** Random Forest Classifier (scikit-learn).
+- **Task:** Predicts reaction mechanism steps based on structural fingerprint differences.
+- **Input:** 4096-bit difference vectors.
+
+## Installation & Usage
+
+1. **Environment Setup:**
+   ```bash
+   ./setup_conda_env.sh
+   conda activate thermo-ml
+   ```
+
+2. **Run the Pipeline:**
+   ```bash
+   cd scripts
+   python morgan_processing.py  # Generate features
+   python mechanism_classifier.py  # Train model
+   ```
+
+## Dependencies
+- **RDKit**: Chemical informatics and fingerprint generation.
+- **scikit-learn**: Model training and evaluation.
+- **pandas/numpy**: Data manipulation.
